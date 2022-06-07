@@ -1,0 +1,641 @@
+@prefix : <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#> .
+@prefix wn: <http://www.w3.org/2006/03/wn/wn20/schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xai-data: <http://soco.cecs.anu.edu.au/data/XAI-RelexNet#> .
+@prefix xai-onto: <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#> .
+@base <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet> .
+
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://ontologydesignpatterns.org/opla-sd#entityPosition
+<http://ontologydesignpatterns.org/opla-sd#entityPosition> rdf:type owl:AnnotationProperty .
+
+
+###  http://ontologydesignpatterns.org/opla-sd#entityPositionX
+<http://ontologydesignpatterns.org/opla-sd#entityPositionX> rdf:type owl:AnnotationProperty .
+
+
+###  http://ontologydesignpatterns.org/opla-sd#entityPositionY
+<http://ontologydesignpatterns.org/opla-sd#entityPositionY> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#firstWord
+xai-onto:firstWord rdf:type owl:ObjectProperty ;
+                   rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence> ;
+                   rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#fromDataset
+xai-onto:fromDataset rdf:type owl:ObjectProperty ;
+                     rdfs:domain xai-onto:LexiconScore ;
+                     rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Dataset> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#fromLexicon
+xai-onto:fromLexicon rdf:type owl:ObjectProperty ;
+                     rdfs:domain xai-onto:LexiconScore ;
+                     rdfs:range xai-onto:Lexicon .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#hasInputLayer
+xai-onto:hasInputLayer rdf:type owl:ObjectProperty ;
+                       rdfs:domain xai-onto:ClassifierArchitecture ;
+                       rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#hasLayer
+xai-onto:hasLayer rdf:type owl:ObjectProperty ;
+                  rdfs:domain xai-onto:ClassifierArchitecture ;
+                  rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#hasNext
+xai-onto:hasNext rdf:type owl:ObjectProperty ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File>
+                                             <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                             <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                           )
+                             ] ;
+                 rdfs:range [ rdf:type owl:Class ;
+                              owl:unionOf ( <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File>
+                                            <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                            <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                          )
+                            ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#ofInputLayer
+xai-onto:ofInputLayer rdf:type owl:ObjectProperty ;
+                      rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation> ;
+                      rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/fromWord
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/fromWord> rdf:type owl:ObjectProperty ,
+                                                                      owl:FunctionalProperty ;
+                                                             rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation> ;
+                                                             rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/generatedFrom
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/generatedFrom> rdf:type owl:ObjectProperty ,
+                                                                           owl:FunctionalProperty ;
+                                                                  rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation> ;
+                                                                  rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasFile
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasFile> rdf:type owl:ObjectProperty ;
+                                                            rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Dataset> ;
+                                                            rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasNextLayer
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasNextLayer> rdf:type owl:ObjectProperty ;
+                                                                 rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> ;
+                                                                 rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasOutputLayer
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasOutputLayer> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:domain xai-onto:ClassifierArchitecture ;
+                                                                   rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasPrevious
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasPrevious> rdf:type owl:ObjectProperty ;
+                                                                rdfs:domain [ rdf:type owl:Class ;
+                                                                              owl:unionOf ( <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File>
+                                                                                            <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                                                                            <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                                                                          )
+                                                                            ] ;
+                                                                rdfs:range [ rdf:type owl:Class ;
+                                                                             owl:unionOf ( <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File>
+                                                                                           <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                                                                           <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                                                                         )
+                                                                           ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasSentence
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasSentence> rdf:type owl:ObjectProperty ;
+                                                                rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File> ;
+                                                                rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasWord
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasWord> rdf:type owl:ObjectProperty ;
+                                                            rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence> ;
+                                                            rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/ofLayer
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/ofLayer> rdf:type owl:ObjectProperty ,
+                                                                     owl:FunctionalProperty ;
+                                                            rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation> ;
+                                                            rdfs:range <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> .
+
+
+###  http://www.w3.org/2002/07/owl#sameAs
+owl:sameAs rdf:type owl:ObjectProperty ;
+           rdfs:domain xai-onto:Lexicon ,
+                       <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word> ;
+           rdfs:range xai-onto:Lexicon ,
+                      wn:Word .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#evaluationNum
+xai-onto:evaluationNum rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word> ;
+                       rdfs:range xsd:int ;
+                       <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "390.26954345622335"^^xsd:double ;
+                                                                                    <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "570.3878000337824"^^xsd:double ;
+                                                                                    rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                  ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#foldNum
+xai-onto:foldNum rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> ;
+                 rdfs:range xsd:int ;
+                 <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "140.41888668069495"^^xsd:double ;
+                                                                              <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "130.27167681911322"^^xsd:double ;
+                                                                              rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                            ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#hasLabel
+xai-onto:hasLabel rdf:type owl:DatatypeProperty ;
+                  rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence> ;
+                  rdfs:range xsd:int ;
+                  <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "659.772900726852"^^xsd:double ;
+                                                                               <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "380.1834091742791"^^xsd:double ;
+                                                                               rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                             ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#kFoldSplit
+xai-onto:kFoldSplit rdf:type owl:DatatypeProperty ;
+                    rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> ;
+                    rdfs:range xsd:int ;
+                    <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "419.7239968608061"^^xsd:double ;
+                                                                                 <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "149.50008387525594"^^xsd:double ;
+                                                                                 rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                               ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#name
+xai-onto:name rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Dataset> .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#paddingLength
+xai-onto:paddingLength rdf:type owl:DatatypeProperty ;
+                       rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> ;
+                       rdfs:range xsd:int ;
+                       <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "140.3841337275907"^^xsd:double ;
+                                                                                    <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "230.2426567322047"^^xsd:double ;
+                                                                                    rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                  ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#predictedLabel
+xai-onto:predictedLabel rdf:type owl:DatatypeProperty ;
+                        rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence> ;
+                        rdfs:range xsd:int ;
+                        <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "420.28149942592364"^^xsd:double ;
+                                                                                     <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "360.3311708612564"^^xsd:double ;
+                                                                                     rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                   ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/batchSize
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/batchSize> rdf:type owl:DatatypeProperty ;
+                                                              rdfs:subPropertyOf owl:topDataProperty ;
+                                                              rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> ;
+                                                              rdfs:range xsd:int ;
+                                                              <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "290.13645050732015"^^xsd:double ;
+                                                                                                                           <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "279.529119417537"^^xsd:double ;
+                                                                                                                           rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                         ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/classID
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/classID> rdf:type owl:DatatypeProperty ;
+                                                            rdfs:subPropertyOf owl:topDataProperty ;
+                                                            rdfs:domain [ rdf:type owl:Class ;
+                                                                          owl:unionOf ( xai-onto:LexiconScore
+                                                                                        <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation>
+                                                                                      )
+                                                                        ] ;
+                                                            rdfs:range xsd:int .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/classNum
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/classNum> rdf:type owl:DatatypeProperty ;
+                                                             rdfs:subPropertyOf owl:topDataProperty ;
+                                                             rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> ;
+                                                             rdfs:range xsd:int ;
+                                                             <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "350.2003092094364"^^xsd:double ;
+                                                                                                                          <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "119.52118234496305"^^xsd:double ;
+                                                                                                                          rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                        ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/contextWindowSize
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/contextWindowSize> rdf:type owl:DatatypeProperty ;
+                                                                      rdfs:subPropertyOf owl:topDataProperty ;
+                                                                      rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> ;
+                                                                      rdfs:range xsd:int ;
+                                                                      <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "249.78708641144829"^^xsd:double ;
+                                                                                                                                   <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "89.70072769639273"^^xsd:double ;
+                                                                                                                                   rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                                 ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/epochNum
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/epochNum> rdf:type owl:DatatypeProperty ;
+                                                             rdfs:subPropertyOf owl:topDataProperty ;
+                                                             rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> ;
+                                                             rdfs:range xsd:int ;
+                                                             <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "70.07589851292008"^^xsd:double ;
+                                                                                                                          <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "179.78268081217317"^^xsd:double ;
+                                                                                                                          rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                        ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/filePath
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/filePath> rdf:type owl:DatatypeProperty ;
+                                                             rdfs:subPropertyOf owl:topDataProperty ;
+                                                             rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File> ;
+                                                             rdfs:range xsd:string ;
+                                                             <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "430.41021876534865"^^xsd:double ;
+                                                                                                                          <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "270.0402812451201"^^xsd:double ;
+                                                                                                                          rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                        ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/function
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/function> rdf:type owl:DatatypeProperty ;
+                                                             rdfs:subPropertyOf owl:topDataProperty ;
+                                                             rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> ;
+                                                             rdfs:range xsd:string ;
+                                                             <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "90.2444684881084"^^xsd:double ;
+                                                                                                                          <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "599.643564715998"^^xsd:double ;
+                                                                                                                          rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                        ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/index
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/index> rdf:type owl:DatatypeProperty ;
+                                                          rdfs:subPropertyOf owl:topDataProperty ;
+                                                          rdfs:domain [ rdf:type owl:Class ;
+                                                                        owl:unionOf ( <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation>
+                                                                                      <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File>
+                                                                                      <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model>
+                                                                                      <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                                                                      wn:Word
+                                                                                    )
+                                                                      ] ;
+                                                          rdfs:range xsd:int .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/input
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/input> rdf:type owl:DatatypeProperty ;
+                                                          rdfs:subPropertyOf owl:topDataProperty ;
+                                                          rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation> ;
+                                                          rdfs:range xsd:float ;
+                                                          <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "639.5034170083558"^^xsd:double ;
+                                                                                                                       <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "570.4704640905305"^^xsd:double ;
+                                                                                                                       rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                     ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/isModifier
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/isModifier> rdf:type owl:DatatypeProperty ;
+                                                               rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word> ;
+                                                               rdfs:range xsd:boolean ;
+                                                               <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "710.4782114054303"^^xsd:double ;
+                                                                                                                            <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "539.8713921758633"^^xsd:double ;
+                                                                                                                            rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                          ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/output
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/output> rdf:type owl:DatatypeProperty ;
+                                                           rdfs:subPropertyOf owl:topDataProperty ;
+                                                           rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation> ;
+                                                           rdfs:range xsd:float ;
+                                                           <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "699.7055249904604"^^xsd:double ;
+                                                                                                                        <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "620.4243804120113"^^xsd:double ;
+                                                                                                                        rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                      ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/timestamp
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/timestamp> rdf:type owl:DatatypeProperty ;
+                                                              rdfs:subPropertyOf owl:topDataProperty ;
+                                                              rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation> ;
+                                                              rdfs:range xsd:dateTimeStamp ;
+                                                              <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "639.8530296337616"^^xsd:double ;
+                                                                                                                           <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "680.2193845345455"^^xsd:double ;
+                                                                                                                           rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                         ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/wordContent
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/wordContent> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:subPropertyOf owl:topDataProperty ;
+                                                                rdfs:domain <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word> ;
+                                                                rdfs:range xsd:string ;
+                                                                <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "440.04337973027566"^^xsd:double ;
+                                                                                                                             <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "480.3079683229988"^^xsd:double ;
+                                                                                                                             rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                           ] .
+
+
+###  http://www.w3.org/2002/07/owl#hasValue
+owl:hasValue rdf:type owl:DatatypeProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( xai-onto:LexiconScore
+                                         <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Dataset>
+                                         <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                         wn:Word
+                                       )
+                         ] ;
+             rdfs:range xsd:string .
+
+
+###  http://www.w3.org/2002/07/owl#topDataProperty
+owl:topDataProperty rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#ClassifierArchitecture
+xai-onto:ClassifierArchitecture rdf:type owl:Class ;
+                                <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "169.8272585952001"^^xsd:double ;
+                                                                                             <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "360.1437957675448"^^xsd:double ;
+                                                                                             rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                           ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#Lexicon
+xai-onto:Lexicon rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty owl:sameAs ;
+                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass wn:Word
+                                 ] ;
+                 <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "700.2835192867342"^^xsd:double ;
+                                                                              <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "460.03820009650383"^^xsd:double ;
+                                                                              rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                            ] ;
+                 rdfs:comment "Lexicon terms" .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#LexiconScore
+xai-onto:LexiconScore rdf:type owl:Class ;
+                      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                        owl:onProperty xai-onto:fromDataset ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Dataset>
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty xai-onto:fromLexicon ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass xai-onto:Lexicon
+                                      ] ;
+                      <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "669.805789414195"^^xsd:double ;
+                                                                                   <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "339.97825050151295"^^xsd:double ;
+                                                                                   rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                 ] ;
+                      rdfs:comment "Score for each terms for each class" .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet#Relexnet
+xai-onto:Relexnet rdf:type owl:Class ;
+                  rdfs:subClassOf xai-onto:ClassifierArchitecture ;
+                  <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "19.50909537305796"^^xsd:double ;
+                                                                               <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "309.91374650263197"^^xsd:double ;
+                                                                               rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                             ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Dataset
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Dataset> rdf:type owl:Class ;
+                                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasFile> ;
+                                                                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File>
+                                                                            ] ;
+                                                            <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "539.6250595797057"^^xsd:double ;
+                                                                                                                         <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "209.8672631628047"^^xsd:double ;
+                                                                                                                         rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                       ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Evaluation> rdf:type owl:Class ;
+                                                               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty xai-onto:ofInputLayer ;
+                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                 owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer>
+                                                                               ] ,
+                                                                               [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/fromWord> ;
+                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                 owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                                                               ] ,
+                                                                               [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/generatedFrom> ;
+                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                 owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model>
+                                                                               ] ,
+                                                                               [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/ofLayer> ;
+                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                 owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer>
+                                                                               ] ;
+                                                               <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "449.91167450170246"^^xsd:double ;
+                                                                                                                            <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "670.1331337037611"^^xsd:double ;
+                                                                                                                            rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                          ] ;
+                                                               rdfs:comment "Input and output values for each layer generated from each word of each class" .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File> rdf:type owl:Class ;
+                                                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasSentence> ;
+                                                                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty xai-onto:hasNext ;
+                                                                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasPrevious> ;
+                                                                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/File>
+                                                                         ] ;
+                                                         <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "550.2425486773042"^^xsd:double ;
+                                                                                                                      <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "309.64317503496574"^^xsd:double ;
+                                                                                                                      rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                    ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> rdf:type owl:Class ;
+                                                          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty xai-onto:hasNext ;
+                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                            owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer>
+                                                                          ] ;
+                                                          <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "170.34704112807498"^^xsd:double ;
+                                                                                                                       <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "670.4568473275411"^^xsd:double ;
+                                                                                                                       rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                     ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Model> rdf:type owl:Class ;
+                                                          <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "259.88163313976116"^^xsd:double ;
+                                                                                                                       <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "179.66665829642204"^^xsd:double ;
+                                                                                                                       rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                     ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence> rdf:type owl:Class ;
+                                                             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasWord> ;
+                                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                               owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty xai-onto:firstWord ;
+                                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                               owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty xai-onto:hasNext ;
+                                                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                               owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasPrevious> ;
+                                                                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                               owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Sentence>
+                                                                             ] ;
+                                                             <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "539.8599667461652"^^xsd:double ;
+                                                                                                                          <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "420.42488250247845"^^xsd:double ;
+                                                                                                                          rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                        ] .
+
+
+###  http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word
+<http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word> rdf:type owl:Class ;
+                                                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty owl:sameAs ;
+                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onClass xai-onto:Lexicon
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty xai-onto:hasNext ;
+                                                                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasPrevious> ;
+                                                                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                           owl:onClass <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Word>
+                                                                         ] ;
+                                                         <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "549.5103370831029"^^xsd:double ;
+                                                                                                                      <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "529.9519224842428"^^xsd:double ;
+                                                                                                                      rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                                                                    ] ;
+                                                         rdfs:comment "Word/terms from any sentences" .
+
+
+###  http://www.w3.org/2006/03/wn/wn20/schema/Word
+wn:Word rdf:type owl:Class ;
+        <http://ontologydesignpatterns.org/opla-sd#entityPosition> [ <http://ontologydesignpatterns.org/opla-sd#entityPositionX> "799.5073370476578"^^xsd:double ;
+                                                                     <http://ontologydesignpatterns.org/opla-sd#entityPositionY> "520.3394358474525"^^xsd:double ;
+                                                                     rdfs:comment "This is an entity positioning annotation generated by CoModIDE (https://comodide.com/). Removing this annotation will break rendering the CoModIDE schema diagram view."@en
+                                                                   ] ;
+        rdfs:comment "Word or composed terms in WordNet" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerB
+<http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerB> rdf:type owl:NamedIndividual ,
+                                                                <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> ;
+                                                       <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasNextLayer> <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerO> .
+
+
+###  http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerL
+<http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerL> rdf:type owl:NamedIndividual ,
+                                                                <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> ;
+                                                       <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasNextLayer> <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerS> .
+
+
+###  http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerM
+<http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerM> rdf:type owl:NamedIndividual ,
+                                                                <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> ;
+                                                       <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasNextLayer> <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerS> .
+
+
+###  http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerO
+<http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerO> rdf:type owl:NamedIndividual ,
+                                                                <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> .
+
+
+###  http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerS
+<http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerS> rdf:type owl:NamedIndividual ,
+                                                                <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/Layer> ;
+                                                       <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasNextLayer> <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerB> .
+
+
+###  http://soco.cecs.anu.edu.au/data/XAI-RelexNet/relexnet
+<http://soco.cecs.anu.edu.au/data/XAI-RelexNet/relexnet> rdf:type owl:NamedIndividual ,
+                                                                  xai-onto:Relexnet ;
+                                                         xai-onto:hasInputLayer <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerL> ,
+                                                                                <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerM> ;
+                                                         xai-onto:hasLayer <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerB> ,
+                                                                           <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerL> ,
+                                                                           <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerM> ,
+                                                                           <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerO> ,
+                                                                           <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerS> ;
+                                                         <http://soco.cecs.anu.edu.au/ontology/XAI-RelexNet/hasOutputLayer> <http://soco.cecs.anu.edu.au/data/XAI-RelexNet/layerO> .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

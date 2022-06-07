@@ -1,0 +1,34 @@
+{
+    "mode": [
+        "test"
+    ],
+    "data": [
+        {
+            "path": "./data/sentiment/imdb_labelled.csv",
+            "dataset": "imdb"
+        }
+    ],
+    "model": {
+        "epochNum": 10,
+        "batchSize": 32,
+        "contextWindowSize": 1,
+        "kFoldSplit": 2,
+        "classNum": 2,
+        "paddingLength": 70,
+        "foldNum": 10,
+        "testPortion": 0,
+        "path": "./saved_models/model_imdb.pt"
+    },
+    "ontology": {
+        "path": "./ontologies/RelexNet.owl",
+        "ontoPrefix": "xai-onto",
+        "dataPrefix": "xai-data"
+    },
+    "evaluationRange": {
+        "begin": 10,
+        "end": 30
+    },
+    "output": {
+        "explanation": "./explaination_imdb.ttl"
+    }
+}

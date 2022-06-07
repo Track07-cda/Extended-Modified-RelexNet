@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Sentence {{sentence.id}}{% endblock %}
+
+{% block content %}
+<h1>Sentence {{sentence.id}}</h1>
+<h2>Content</h2>
+<p>{{sentence.value}}</p>
+<h2>Predicted Class</h2>
+<p>{{sentence.predicted_class_id}}</p>
+<h2>Most significant lexicons</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Lexicon</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for lexicon in significant_lexicons %}
+    <tr>
+      <td>{{lexicon.value}}</td>
+      <td>{{lexicon.score}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h2>Word Details</h2>
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">ID</th>
+      <th rowspan="2">Content</th>
+      <th rowspan="2">Modifier</th>
+      <th colspan="{{class_num}}">Score</th>
+    </tr>
+    <tr>
+      {% for i in range(class_num) %}
+      <th>Class {{i}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for word in words %}
+    <tr>
+      <td><a href="/data/{{dataset_id}}/{{file_id}}/{{sentence.id}}/{{word.id}}">{{word.id}}</a></td>
+      <td>{{word.value}}</td>
+      <td>{{word.isModifier}}</td>
+      {% for i in range(class_num) %}
+        <td>{{word.scores[i]}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

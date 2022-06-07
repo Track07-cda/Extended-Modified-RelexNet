@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+<form method="post">
+  <label for="DG_file_path">Data graph file path</label>
+  <input type="text" id="DG_file_path" name="DG_file_path" value="explaination_imdb.ttl"><br>
+  <label for="SWN_file_path">SentiWordNet file path</label>
+  <input type="text" id="SWN_file_path" name="SWN_file_path" value="data/SentiWordNet/SentiWordNet_3.0.0.txt"><br>
+  <input type="submit" value="Submit">
+</form>
+{% endblock %}

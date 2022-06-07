@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}file {{file_id}}{% endblock %}
+
+{% block content %}
+<div>
+  <h1>Evaluated Sentences</h1>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Content</th>
+      <th>Predicted Class ID</th>
+      <th>Class ID</th>
+    </tr>
+    {% for sentence in sentences %}
+    <tr>
+      <td><a href="/data/{{dataset_id}}/{{file_id}}/{{sentence.id}}">{{sentence.id}}</a></td>
+      <td>{{sentence.value}}</td>
+      <td>{{sentence.predicted_class_id}}</td>
+      <td>{{sentence.class_id}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+<div>
+  <h1>Statistic</h1>
+  <ul>
+    <li>Accuracy: {{accuracy}}</li>
+    <li>Class distribution
+      <table>
+        <tr>
+          <th>Class ID</th>
+          <th>Pridiction distribution</th>
+          <th>Ground truth distribution</th>
+        </tr>
+        {% for i in range(class_num) %}
+        <tr>
+          <td>{{i}}</td>
+          <td>{{distribution[i].pridict}}&percnt;</td>
+          <td>{{distribution[i].gt}}&percnt;</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </li>
+  </ul>
+</div>
+{% endblock %}

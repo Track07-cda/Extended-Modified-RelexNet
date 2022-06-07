@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Evaluation of word: {{word.value}} in class {{class_id}}{% endblock %}
+
+{% block content %}
+<h1>Evaluation of {{word.value}}</h1>
+<table>
+  <tr>
+    <th>Input Layer</th>
+    <th>Input Value</th>
+    <th>Formula</th>
+    <th>Output Value</th>
+  </tr>
+  <tr>
+    <td>
+      <table>
+        {% for layer in input_layers %}
+        <tr>
+          <td>{{layer.name}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </td>
+    <td>
+      <table>
+        {% for layer in input_layers %}
+        <tr>
+
+          <td>{{layer.value}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </td>
+    <td>{{formula}}</td>
+    <td>{{output}}</td>
+  </tr>
+</table>
+{% endblock %}

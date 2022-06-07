@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Word {{word.id}}: {{word.value}}{% endblock %}
+
+{% block content %}
+<h1>Word {{word.id}}: {{word.value}}</h1>
+<h2>Relexnet Data Flow</h2>
+{% for cid in range(class_num)%}
+<h3>Class {{cid}}</h3>
+<table>
+  <tr>
+    <td></td>
+    <td>{{evaluation.layerL[cid]}}</td>
+    <td></td>
+    <td>{{evaluation.layerS[cid]}}</td>
+    <td></td>
+    <td>{{evaluation.layerB[cid]}}</td>
+  </tr>
+  <tr>
+    <th><a href="{{word.id}}/layerL/{{cid}}">L layer</a></th>
+    <th>→</th>
+    <th><a href="{{word.id}}/layerS/{{cid}}">S layer</a></th>
+    <th>→</th>
+    <th><a href="{{word.id}}/layerB/{{cid}}">B layer</a></th>
+    <th>→</th>
+    <th><a href="{{word.id}}/layerO/{{cid}}">O layer</a></th>
+    <th>→</th>
+    <td>{{evaluation.layerO[cid]}}</td>
+  </tr>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>↑</th>
+    <th></th>
+    <th>↑</th>
+    <th></th>
+  </tr>
+  <tr>
+    <th></th>
+    <td>{{evaluation.layerM[cid]}}</td>
+    <th><a href="{{word.id}}/layerM/{{cid}}">M layer</a></th>
+    <th></th>
+    <th>B layer<br>previous time step</th>
+    <td>{{evaluation.layerB_in[cid]}}</td>
+  </tr>
+</table>
+{% endfor %}
+<h2>Learnt Score for the word</h2>
+  <ul>
+    {%for cid in range(class_num) %}
+    <li>Class {{cid}}: {{evaluation.layerL[cid]}}</li>
+    {% endfor %}
+  </ul>
+<h2>External Resources</h2>
+<h3>SentiWordNet</h3>
+<table style="border: 1px solid black; border-collapse:collapse">
+  <thead>
+    <tr>
+      <th>Synset Terms</th>
+      <th>POS</th>
+      <th>ID</th>
+      <th>NegScore</th>
+      <th>PosScore</th>
+      <th>Gloss</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for index, synset in synsets.iterrows() %}
+    <tr>
+      <td>{{synset.SynsetTerms}}</td>
+      <td>{{synset.POS}}</td>
+      <td>{{synset.ID}}</td>
+      <td>{{synset.NegScore}}</td>
+      <td>{{synset.PosScore}}</td>
+      <td>{{synset.Gloss}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h3>WordNet</h3>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Data{% endblock %}
+
+{% block content %}
+<h1>Datasets</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+  {% for dataset in datasets %}
+  <tr>
+    <td><a href="/data/{{dataset.id}}">{{dataset.id}}</a></td>
+    <td>{{dataset.name}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

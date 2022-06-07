@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Dataset {{dataset_id}}{% endblock %}
+
+{% block content %}
+<div>
+  <h1>Files</h1>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>File Name</th>
+    </tr>
+    {% for file in files %}
+    <tr>
+      <td><a href="/data/{{dataset_id}}/{{file.id}}">{{file.id}}</a></td>
+      <td>{{file.path}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
